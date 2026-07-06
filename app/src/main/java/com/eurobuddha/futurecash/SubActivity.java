@@ -1,4 +1,4 @@
-package org.minimarex.futurecash;
+package com.eurobuddha.futurecash;
 
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;

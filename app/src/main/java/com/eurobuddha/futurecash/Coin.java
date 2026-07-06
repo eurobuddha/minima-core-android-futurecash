@@ -1,4 +1,4 @@
-package org.minimarex.futurecash;
+package com.eurobuddha.futurecash;
 
 import org.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package org.minimarex.futurecash;
+package com.eurobuddha.futurecash;
 
 /**
  * vestr design tokens — the shared dark + orange look used across the native Minima dapps (matches the

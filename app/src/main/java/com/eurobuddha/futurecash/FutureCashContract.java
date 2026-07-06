@@ -1,4 +1,4 @@
-package org.minimarex.futurecash;
+package com.eurobuddha.futurecash;
 
 /**
  * The FutureCash smart contract — KISS-VM script + state layout, taken VERBATIM from the FutureCash

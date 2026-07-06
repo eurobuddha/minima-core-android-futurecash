@@ -1,4 +1,4 @@
-package org.minimarex.futurecash;
+package com.eurobuddha.futurecash;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

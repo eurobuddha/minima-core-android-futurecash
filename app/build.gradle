@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'org.minimarex.futurecash'
+    namespace 'com.eurobuddha.futurecash'
     compileSdk 36
 
     defaultConfig {
-        applicationId "org.minimarex.futurecash"
+        applicationId "com.eurobuddha.futurecash"
         minSdk 28
         targetSdk 35
         versionCode 103
