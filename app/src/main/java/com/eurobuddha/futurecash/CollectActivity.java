@@ -182,6 +182,13 @@ public class CollectActivity extends SubActivity {
 
     private void collect() {
         if (!p.matured(tip)) return;
+        // The recipient + token id come from the coin's ON-CHAIN state, and anyone can put arbitrary state on a coin
+        // at the shared FutureCash address. Refuse to build a command from malformed values (defence-in-depth — the
+        // on-chain VERIFYOUT would reject a bad output anyway, but we never hand unvalidated data to the node parser).
+        if (!Util.isValidAddress(p.recipient) || !Util.isValidTokenId(p.tokenid)) {
+            setStatus(status, "This payment's on-chain data looks malformed — refusing to collect.", false);
+            return;
+        }
         String burn = burnInput.getText().toString().trim();
         if (!burn.isEmpty() && !isPositive(burn)) { setStatus(status, "Burn must be a positive number.", false); return; }
         String id = "fc" + System.currentTimeMillis();
@@ -192,8 +199,13 @@ public class CollectActivity extends SubActivity {
         cmds.add("txninput id:" + id + " coinid:" + p.coinid + " scriptmmr:true");
         cmds.add("txnoutput id:" + id + " address:" + p.recipient + " amount:" + p.amount.toPlainString()
                 + " tokenid:" + p.tokenid + " storestate:false");
+        // A whole-coin single-shot spend is self-balancing with no fee, so the base path needs no txnbasics. But a
+        // burn needs a separate MINIMA input to fund it — txnbasics scaffolds (and lets txnpost sign) that input.
+        // NB: verify the burn-on-collect path on a real node; the 0-burn path (the default) is the proven one.
+        boolean hasBurn = !burn.isEmpty() && isPositive(burn);
+        if (hasBurn) cmds.add("txnbasics id:" + id);
         String post = "txnpost id:" + id;
-        if (!burn.isEmpty() && isPositive(burn)) post += " burn:" + burn;
+        if (hasBurn) post += " burn:" + burn;
         cmds.add(post);
 
         collecting = true;
@@ -211,8 +223,10 @@ public class CollectActivity extends SubActivity {
         }
         node.cmd(cmds.get(i), new NodeApi.Cb() {
             @Override public void onResult(JSONObject j) {
-                // build steps return status:true; txnpost is async-mined (istransaction may be false — still ok).
-                if (!j.optBoolean("status", true)) { fail(j.optString("error", "Collect failed"), id); return; }
+                // Build steps must report status:true; only txnpost is async-mined (a missing status is ok there,
+                // istransaction may be false). Defaulting build steps to false so a silently-failed step can't proceed.
+                boolean isPost = cmds.get(i).startsWith("txnpost");
+                if (!j.optBoolean("status", isPost)) { fail(j.optString("error", "Collect failed"), id); return; }
                 runSequence(cmds, i + 1, id);
             }
             @Override public void onError(String m) {

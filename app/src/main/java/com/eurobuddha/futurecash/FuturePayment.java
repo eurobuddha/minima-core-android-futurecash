@@ -46,8 +46,11 @@ public class FuturePayment {
     public boolean matured(long tip) { return FutureCashContract.matured(tip, coinAge(tip), futureBlock, coinageThreshold); }
     public long blocksRemaining(long tip) { long left = futureBlock - tip; return left > 0 ? left : 0; }
 
-    /** A real future-cash coin carries a recipient and a future block. */
-    public boolean valid() { return recipient != null && !recipient.isEmpty() && futureBlock > 0; }
+    /** A real future-cash coin carries a WELL-FORMED recipient and token id (both flow into the collect command,
+     *  and the shared address accepts coins with attacker-set state) plus a future block. */
+    public boolean valid() {
+        return Util.isValidAddress(recipient) && Util.isValidTokenId(tokenid) && futureBlock > 0;
+    }
 
     static String state(JSONObject coin, int port) {
         JSONArray st = coin.optJSONArray("state");

@@ -187,7 +187,13 @@ public class CreateFutureActivity extends SubActivity {
                 if (!j.optBoolean("status", false)) { sendBtn.setEnabled(true); setStatus(status, "That isn't a valid Minima address.", false); return; }
                 JSONObject r = j.optJSONObject("response");
                 String hex = r == null ? "" : r.optString("0x", "");
-                if (hex.isEmpty()) hex = addr;
+                // The contract's VERIFYOUT compares against state[2] as a 0x hex address, so fail closed rather than
+                // store a non-0x (Mx) fallback that could make the coin uncollectable.
+                if (!hex.matches("^0x[0-9a-fA-F]{64}$")) {
+                    sendBtn.setEnabled(true);
+                    setStatus(status, "Could not resolve the recipient to a 0x address — try again.", false);
+                    return;
+                }
                 doSend(hex, amount, tokenid, burn, pw);
             }
             @Override public void onError(String m) {

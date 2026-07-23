@@ -16,6 +16,12 @@ public final class Util {
         return a != null && a.matches("^(0x[0-9a-fA-F]{64}|Mx[A-Za-z0-9]{40,118})$");
     }
 
+    /** A Minima token id: 0x00 (Minima) or 0x + up to 64 hex. Used to sanitise on-chain state before it is
+     *  interpolated into a node command (a coin at the shared FutureCash address carries attacker-set state). */
+    public static boolean isValidTokenId(String t) {
+        return t != null && t.matches("^0x[0-9a-fA-F]{1,64}$");
+    }
+
     /** Number of significant decimal places in an amount (0 for integers). */
     public static int decimalPlaces(BigDecimal bd) {
         return Math.max(0, bd.stripTrailingZeros().scale());
