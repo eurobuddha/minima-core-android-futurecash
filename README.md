@@ -1,54 +1,37 @@
-# Minima Vestr (native Android)
+# Minima FutureCash (native Android)
 
-A fully‑native Android port of the **[vestr](https://github.com/minima-global/vestr)** MiniDapp — a
-**token‑vesting contract manager** for the [Minima](https://minima.global) blockchain.
+A native Android app for **time-locked payments on [Minima](https://minima.global)** — "send money to the future".
+Lock funds now so they become payable to a chosen recipient **only after a future block** (a date/time you pick), then
+anyone can collect the matured payment to that recipient. Trustless and non-custodial, all on-chain. Package
+`com.eurobuddha.futurecash`.
 
-Lock tokens in an on‑chain smart contract that releases them gradually over time (linear vesting with a
-cliff and a grace period). A **Creator** makes and tracks contracts; a **Collector** withdraws what has
-vested.
+## How it works
 
-Unlike the web MiniDapp (React + MDS), this app is native Java and talks to a **Minima Core node running
-on the same device** over the node's **broadcast‑Intent IPC** (the `minimaapi` SDK) — no MDS, no RPC, no
-browser.
+- **Send to the future** — pick a token, recipient, amount, and an unlock date/time. The funds are sent to a
+  **FutureCash covenant** address with the unlock block + recipient encoded in coin state. On pairing the app
+  registers the covenant script (`newscript`), and because the script is a verbatim port, it derives the **same
+  address as the FutureCash web dapp** — so the two interoperate.
+- **Maturity** — the covenant releases only once the chain reaches the future block (or an equivalent coin-age
+  threshold), and only to the stored recipient. Until then the funds sit locked; no one — not even the sender — can
+  redirect them.
+- **Collect** — after maturity, the matured coin is listed; collecting it spends the whole coin to the recipient in a
+  single-shot transaction. The covenant has **no `SIGNEDBY`**, so collecting needs **no signature** — hence no WOTS
+  key-use / key-reuse risk.
 
-## Interoperable with the web dapp
-
-The app deploys vestr's exact vesting script (`cleanScript`) via `newscript` and adopts the **returned**
-address. That address is a deterministic hash of the cleaned script, so it matches the web vestr dapp's —
-**contracts created in either app are visible and collectible in the other.**
-
-## How it works (node commands)
-
-| Action | Command(s) |
-| --- | --- |
-| Deploy script (once) | `newscript script:"<cleanScript>" trackall:false` → returns the contract address |
-| List contracts | `coins address:<script> relevant:true` → parse the 11 state vars |
-| Create | `send amount:A address:<script> tokenid:T state:{0..8,199}` |
-| Collect amount | `runscript` on the contract's `checkMaths` (exact `SIGDIG(2)` value) |
-| Collect | `txncreate` → `txninput coinid:.. scriptmmr:true` → `txnoutput` (payout, no‑state) + `txnoutput` (change, keep‑state) → `txnstate port:0..8,199` → `txnpost [burn]` → `txndelete` |
-
-State vars per contract coin: `0` unlock addr · `1` total · `2` start block · `3` end block ·
-`4` grace blocks · `5` created ms · `6` start ms · `7` grace hours · `8` end ms · `199` uid.
+It talks to the **local Minima Core node** over the broadcast-Intent IPC (`minimaapi`, the same transport as Vestr) —
+no server, no internet permission for the payment flow.
 
 ## Build
 
-Requires a **JDK 17/21** (the Android Studio JBR works; the system JDK may be too new for Gradle):
+Requires a **JDK 17/21** (the Android Studio JBR works):
 
 ```sh
-JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home" ./gradlew assembleDebug
+JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home" ./gradlew assembleRelease
 ```
 
-Install the APK, then enable **Minima Vestr** in Minima Core → Apps to authorize the IPC.
+Install, then enable **FutureCash** in Minima Core → Apps to authorize the IPC and register the covenant script.
 
 ## Releases
 
-Versioned APKs + changelog: **[eurobuddha/minima-core-apks](https://github.com/eurobuddha/minima-core-apks)**
-(releases tagged `minima-vestr-v<version>`).
-
-## Project layout
-
-- `app/src/main/java/org/minimarex/vestr/` — `MainActivity` (3‑tab shell + pairing + script deploy),
-  `Creator`/`Collector`/`About` views, `CreateContractActivity`, `ContractDetailActivity` (collect),
-  `CalculatorActivity`, `VestingContract` (script + math), `Contract` (state parser), `NodeApi` (IPC),
-  `VestrDesign` (tokens).
-- `app/libs/minimaapi.aar` — the Minima Core IPC client SDK.
+Versioned APKs are published to the [PandaApps catalog](https://github.com/eurobuddha/minima-core-apks)
+(`apks.json`). Current: **v0.2.1**.
