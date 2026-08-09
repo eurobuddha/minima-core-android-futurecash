@@ -1,0 +1,377 @@
+{
+  "communities": {
+    "0": [
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_java_broadcastreceiver",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_java_bundle",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_java_handler",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_java_jsonobject",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_java_linearlayout",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_java_override",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_java_textview",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_buildbottombar",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_currenttab",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_dp",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_gototab",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_handleerr",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_oncreate",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_ondestroy",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_onresume",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_openminimacore",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_requestreload",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_scriptaddress",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_setactivetab",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_setpaired",
+      "appcompatactivity",
+      "viewpager"
+    ],
+    "1": [
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_submit",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_bd",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_from",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_isminima",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_parsel",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_state",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_valid",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_java_jsonobject",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_payments",
+      "app_src_main_java_com_eurobuddha_futurecash_util",
+      "app_src_main_java_com_eurobuddha_futurecash_util_java_jsonobject",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_decimalplaces",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_extracttxpowid",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_isminima",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_isvalidaddress",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_isvalidtokenid",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_shorten",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_tidyamount",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_tokenname",
+      "app_src_main_java_com_eurobuddha_futurecash_util_util_util"
+    ],
+    "2": [
+      "app_src_main_java_com_eurobuddha_futurecash_baseview",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview_baseview",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview_dp",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview_find",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview_getroot",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview_onnewblock",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview_onshown",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview_refresh",
+      "app_src_main_java_com_eurobuddha_futurecash_baseview_java_view",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_futureview",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_futureview_empty",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_futureview_futureview",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_futureview_onshown",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_futureview_refresh",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_futureview_section",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_java_linearlayout",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_java_override",
+      "app_src_main_java_com_eurobuddha_futurecash_futureview_java_textview",
+      "suppresswarnings"
+    ],
+    "3": [
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_dosend",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_fetchblock",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_fetchdefaultaddress",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_fetchtokens",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_init",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_ispositive",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_pickdatetime",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_resolvescript",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_resolveviascripts",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_tokenadapter",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_java_edittext",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_java_override",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_java_textview",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_mscb",
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_mscb_on",
+      "app_src_main_java_com_eurobuddha_futurecash_futurecashcontract_futurecashcontract_blockfordate",
+      "arrayadapter",
+      "simpledateformat",
+      "spinner"
+    ],
+    "4": [
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_mayberender",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_render",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_fccardui",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_fccardui_amount",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_fccardui_blockstospan",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_fccardui_card",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_fccardui_dp",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_fccardui_fccardui",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_fccardui_relative",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_fccardui_shorthex",
+      "app_src_main_java_com_eurobuddha_futurecash_fccardui_java_view",
+      "app_src_main_java_com_eurobuddha_futurecash_futurecashcontract",
+      "app_src_main_java_com_eurobuddha_futurecash_futurecashcontract_futurecashcontract",
+      "app_src_main_java_com_eurobuddha_futurecash_futurecashcontract_futurecashcontract_futurecashcontract",
+      "app_src_main_java_com_eurobuddha_futurecash_futurecashcontract_futurecashcontract_matured",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_blocksremaining",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_coinage",
+      "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment_matured",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_chainblock"
+    ],
+    "5": [
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_deployscript",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_node",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_reload",
+      "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity_resolvescriptaddress",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_cb",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_cb_onerror",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_cb_onresult",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_java_handler",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_java_jsonobject",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_nodeapi",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_nodeapi_cmd",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_nodeapi_dead",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_nodeapi_nodeapi",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_nodeapi_timeoutfor",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_pairinglistener",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_pairinglistener_onenabled",
+      "context",
+      "minimaapi"
+    ],
+    "6": [
+      "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity_buildform",
+      "app_src_main_java_com_eurobuddha_futurecash_nodeapi_nodeapi_ondestroy",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_java_bundle",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_java_edittext",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_java_linearlayout",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_java_override",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_java_textview",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_dp",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_init",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_input",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_label",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_oncreate",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_ondestroy",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_pickerbutton",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_primarybutton",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_status"
+    ],
+    "7": [
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_addcopy",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_addstat",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_collect",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_fail",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_fetchblock",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_init",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_ispositive",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_ondestroy",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity_runsequence",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_java_broadcastreceiver",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_java_edittext",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_java_override",
+      "app_src_main_java_com_eurobuddha_futurecash_collectactivity_java_textview",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_setstatus",
+      "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity_title"
+    ],
+    "8": [
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_java_override",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_java_view",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager_destroyitem",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager_getcount",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager_getpagetitle",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager_instantiateitem",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager_isviewfromobject",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager_mainpager",
+      "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager_viewat",
+      "nonnull",
+      "pageradapter",
+      "viewgroup"
+    ],
+    "9": [
+      "app_src_main_java_com_eurobuddha_futurecash_sendview",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_java_linearlayout",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_java_onclicklistener",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_java_override",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_java_textview",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_java_view",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_sendview",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_sendview_button",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_sendview_empty",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_sendview_onshown",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_sendview_refresh",
+      "app_src_main_java_com_eurobuddha_futurecash_sendview_sendview_sendview"
+    ],
+    "10": [
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview",
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview_aboutview",
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview_aboutview_aboutview",
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview_aboutview_build",
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview_aboutview_cta",
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview_aboutview_refresh",
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview_java_linearlayout",
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview_java_onclicklistener",
+      "app_src_main_java_com_eurobuddha_futurecash_aboutview_java_override",
+      "button"
+    ],
+    "11": [
+      "gradlew",
+      "gradlew__entry",
+      "gradlew_die",
+      "gradlew_save",
+      "gradlew_warn"
+    ],
+    "12": [
+      "app_src_main_java_com_eurobuddha_futurecash_fcdesign",
+      "app_src_main_java_com_eurobuddha_futurecash_fcdesign_fcdesign",
+      "app_src_main_java_com_eurobuddha_futurecash_fcdesign_fcdesign_fcdesign"
+    ],
+    "13": [
+      "app_build"
+    ],
+    "14": [
+      "build"
+    ],
+    "15": [
+      "settings"
+    ]
+  },
+  "cohesion": {
+    "0": 0.15579710144927536,
+    "1": 0.1422924901185771,
+    "2": 0.1523809523809524,
+    "3": 0.1523809523809524,
+    "4": 0.1631578947368421,
+    "5": 0.1871345029239766,
+    "6": 0.22875816993464052,
+    "7": 0.20588235294117646,
+    "8": 0.24175824175824176,
+    "9": 0.3181818181818182,
+    "10": 0.28888888888888886,
+    "11": 0.6,
+    "12": 0.6666666666666666,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_mainactivity_mainactivity",
+      "label": "MainActivity",
+      "degree": 36
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_createfutureactivity_createfutureactivity",
+      "label": "CreateFutureActivity",
+      "degree": 19
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_collectactivity_collectactivity",
+      "label": "CollectActivity",
+      "degree": 17
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_subactivity_subactivity",
+      "label": "SubActivity",
+      "degree": 17
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_baseview_baseview",
+      "label": "BaseView",
+      "degree": 16
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_nodeapi_nodeapi",
+      "label": "NodeApi",
+      "degree": 16
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_nodeapi_cb",
+      "label": "Cb",
+      "degree": 16
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_futurepayment_futurepayment",
+      "label": "FuturePayment",
+      "degree": 14
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_mainpager_mainpager",
+      "label": "MainPager",
+      "degree": 12
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_futurecash_util_util",
+      "label": "Util",
+      "degree": 10
+    }
+  ],
+  "surprises": [
+    {
+      "source": "AboutView",
+      "target": "BaseView",
+      "source_files": [
+        "app/src/main/java/com/eurobuddha/futurecash/AboutView.java",
+        "app/src/main/java/com/eurobuddha/futurecash/BaseView.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "BaseView",
+      "target": "MainActivity",
+      "source_files": [
+        "app/src/main/java/com/eurobuddha/futurecash/BaseView.java",
+        "app/src/main/java/com/eurobuddha/futurecash/MainActivity.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "MainPager",
+      "target": "BaseView",
+      "source_files": [
+        "app/src/main/java/com/eurobuddha/futurecash/MainPager.java",
+        "app/src/main/java/com/eurobuddha/futurecash/BaseView.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "SendView",
+      "target": "BaseView",
+      "source_files": [
+        "app/src/main/java/com/eurobuddha/futurecash/SendView.java",
+        "app/src/main/java/com/eurobuddha/futurecash/BaseView.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "CollectActivity",
+      "target": "FuturePayment",
+      "source_files": [
+        "app/src/main/java/com/eurobuddha/futurecash/CollectActivity.java",
+        "app/src/main/java/com/eurobuddha/futurecash/FuturePayment.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
