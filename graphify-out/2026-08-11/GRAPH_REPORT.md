@@ -1,16 +1,16 @@
 # Graph Report - futurecash  (2026-08-11)
 
 ## Corpus Check
-- 21 files · ~14,096 words
+- 21 files · ~13,943 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 240 nodes · 449 edges · 28 communities (14 shown, 14 thin omitted)
+- 237 nodes · 450 edges · 24 communities (14 shown, 10 thin omitted)
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 57 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `bf224e65`
+- Built from commit: `21b4105a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -36,10 +36,6 @@
 - JSONObject
 - View
 - ViewPager
-- BaseView
-- LinearLayout
-- Override
-- TextView
 
 ## God Nodes (most connected - your core abstractions)
 1. `MainActivity` - 43 edges
@@ -68,11 +64,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (28 total, 14 thin omitted)
+## Communities (24 total, 10 thin omitted)
 
 ### Community 0 - "MainActivity"
 Cohesion: 0.10
-Nodes (13): android.content.BroadcastReceiver, android.os.Bundle, android.os.Handler, androidx.appcompat.app.AppCompatActivity, androidx.viewpager.widget.ViewPager, MainActivity, BroadcastReceiver, LinearLayout (+5 more)
+Nodes (14): android.content.BroadcastReceiver, android.os.Bundle, android.os.Handler, androidx.appcompat.app.AppCompatActivity, androidx.viewpager.widget.ViewPager, BaseView, LinearLayout, Override (+6 more)
 
 ### Community 1 - "Util"
 Cohesion: 0.11
@@ -95,7 +91,7 @@ Cohesion: 0.19
 Nodes (7): Cb, Handler, JSONObject, NodeApi, PairingListener, Context, MinimaAPI
 
 ### Community 6 - "SubActivity"
-Cohesion: 0.24
+Cohesion: 0.22
 Nodes (7): Bundle, EditText, LinearLayout, Override, TextView, SubActivity, AppCompatActivity
 
 ### Community 7 - "FuturePayment"
@@ -117,17 +113,17 @@ Nodes (4): Build, How it works, Minima FutureCash (native Android), Releases
 ## Knowledge Gaps
 - **3 isolated node(s):** `How it works`, `Build`, `Releases`
   These have ≤1 connection - possible missing edges or undocumented components.
-- **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `MainActivity` connect `MainActivity` to `Util`, `.dp`, `CollectActivity`, `Cb`, `BaseView`?**
-  _High betweenness centrality (0.401) - this node is a cross-community bridge._
+  _High betweenness centrality (0.413) - this node is a cross-community bridge._
 - **Why does `BaseView` connect `BaseView` to `MainActivity`, `.dp`?**
-  _High betweenness centrality (0.146) - this node is a cross-community bridge._
+  _High betweenness centrality (0.151) - this node is a cross-community bridge._
 - **Why does `Cb` connect `Cb` to `Util`, `CreateFutureActivity`, `CollectActivity`?**
-  _High betweenness centrality (0.137) - this node is a cross-community bridge._
+  _High betweenness centrality (0.141) - this node is a cross-community bridge._
 - **Are the 13 inferred relationships involving `Cb` (e.g. with `.fetchBlock()` and `.runSequence()`) actually correct?**
   _`Cb` has 13 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `How it works`, `Build`, `Releases` to the rest of the system?**

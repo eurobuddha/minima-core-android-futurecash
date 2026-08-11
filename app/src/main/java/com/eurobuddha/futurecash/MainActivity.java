@@ -359,15 +359,17 @@ public class MainActivity extends AppCompatActivity {
     public String contractAddress() { return scriptAddress; }
 
     /**
-     * Parsed future-cash payments (coins at the script address relevant to this wallet), NEWEST FIRST.
+     * Parsed future-cash payments (coins at the script address relevant to this wallet), ordered by
+     * UNLOCK BLOCK ASCENDING — soonest to collect at the top, furthest into the future at the bottom.
+     *
+     * Everything already matured has an unlock block at or below the tip, so the ready-to-collect
+     * payments sort to the head of the list on the same key that orders the rest — no separate ready
+     * bucket, and the ordering stays stable as the tip advances and payments mature into it.
      *
      * The sort is ours because the node does not do it: core's coins.java only sorts when {@code order:asc}
      * is asked for — the default {@code "desc"} is a no-op branch — so the reply arrives in tree-walk order,
      * which scatters ready and locked payments through the list. Merging two address scans shuffles it
      * further still.
-     *
-     * Ordered by the block the coin was created in: on-chain, always present, and monotonic. The port-3
-     * timestamp only breaks ties within a block, since it is sender-supplied state rather than chain truth.
      */
     public List<FuturePayment> payments() {
         List<FuturePayment> out = new ArrayList<>();
@@ -376,12 +378,13 @@ public class MainActivity extends AppCompatActivity {
             if (p.valid()) out.add(p);
         }
         Collections.sort(out, (a, b) -> {
-            int byBlock = Long.compare(b.createdBlock, a.createdBlock);
-            if (byBlock != 0) return byBlock;
-            int byTime = Long.compare(b.createdMs, a.createdMs);
-            if (byTime != 0) return byTime;
-            // Same block and same stamp: coinid keeps the order stable across refreshes so cards
-            // don't swap places under the user's finger.
+            int byUnlock = Long.compare(a.futureBlock, b.futureBlock);
+            if (byUnlock != 0) return byUnlock;
+            // Same unlock block: oldest stake first, so a queue of payments maturing together keeps the
+            // order they were created in.
+            int byCreated = Long.compare(a.createdBlock, b.createdBlock);
+            if (byCreated != 0) return byCreated;
+            // coinid keeps the order stable across refreshes so cards don't swap under the user's finger.
             return String.valueOf(a.coinid).compareTo(String.valueOf(b.coinid));
         });
         return out;
