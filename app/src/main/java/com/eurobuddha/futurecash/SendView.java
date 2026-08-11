@@ -43,7 +43,7 @@ public class SendView extends BaseView {
 
         List<FuturePayment> payments = act.payments();
         if (payments.isEmpty()) {
-            container.addView(empty("Nothing locked yet. Send Minima or a token to a future block."));
+            container.addView(empty(act.emptyReason()));
         } else {
             for (FuturePayment p : payments) container.addView(FcCardUi.card(act, p));
         }

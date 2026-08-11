@@ -24,6 +24,7 @@ import org.minimarex.minimaapi.MinimaAPI;
 import org.minimarex.minimaapi.MinimaAPIMessages;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -53,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     private String scriptAddress = "";
     private int chainBlock = 0;
     private final List<JSONObject> contractCoins = new ArrayList<>();   // raw coins at the script address
+    private boolean resolving = false;   // an address resolution is in flight (don't stack them)
+    private boolean registerTried = false;   // newscript has been attempted once this session
+    private boolean scanned = false;     // a coin scan has completed at least once
+    private int malformed = 0;           // coins found at the contract that payments() had to reject
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         setActiveTab(TAB_SEND);
 
         node = new NodeApi(this, enabled -> {
-            if (enabled) { setPaired(true); deployScript(); }
+            if (enabled) { setPaired(true); ensureScriptAddress(); }
             else setPaired(false);
         });
 
@@ -157,43 +162,80 @@ public class MainActivity extends AppCompatActivity {
 
     // ===== contract script deploy + reload =====
 
-    /** Register the FutureCash script and adopt the returned address (the shared, interoperable address).
-     *  Falls back to a {@code scripts} lookup if newscript doesn't hand back an address (e.g. the script
-     *  was already registered) — so the address is never left blank. */
-    private void deployScript() {
-        node.cmd("newscript script:\"" + FutureCashContract.SCRIPT + "\" trackall:false", new NodeApi.Cb() {
-            @Override public void onResult(JSONObject json) {
-                JSONObject r = json.optJSONObject("response");
-                if (r != null) {
-                    String a = r.optString("address", "");
-                    if (!a.isEmpty()) scriptAddress = a;
-                }
-                if (scriptAddress.isEmpty()) resolveScriptAddress();
-                else { requestReload(); for (BaseView v : views) v.refresh(); }
-            }
-            @Override public void onError(String message) { resolveScriptAddress(); }
-        });
-    }
-
-    /** Resolve the FutureCash address from the node's registered scripts — reliable whether the script was
-     *  just registered or already present. */
-    private void resolveScriptAddress() {
+    /**
+     * Resolve the FutureCash script address, retried on every reload until it sticks.
+     *
+     * This used to run ONCE, off the pairing callback. If that single {@code enabled:true} reply never
+     * arrived (already-registered app, node restarted mid-session, a timeout) the address stayed blank,
+     * {@link #reload()} returned early forever, and the app showed an empty list with no error — a real
+     * stake looked like no stake. Resolution is now idempotent and re-driven from reload().
+     *
+     * Reads {@code scripts} FIRST and registers only when the script is genuinely missing. {@code newscript}
+     * is NOT an idempotent no-op — core does {@code removeScript()} then {@code addScript()} as two separate
+     * calls, so re-registering on every launch opens a window with no FutureCash script at all (a
+     * {@code txnbasics} landing in it attaches no script and the spend is rejected on-chain).
+     */
+    private void ensureScriptAddress() {
+        if (resolving || !scriptAddress.isEmpty()) return;
+        resolving = true;
         node.cmd("scripts", new NodeApi.Cb() {
             @Override public void onResult(JSONObject json) {
+                resolving = false;
                 JSONArray arr = json.optJSONArray("response");
+                String found = "";
                 if (arr != null) for (int i = 0; i < arr.length(); i++) {
                     JSONObject s = arr.optJSONObject(i);
                     if (s == null) continue;
-                    if (FutureCashContract.SCRIPT.equals(s.optString("script", "").replaceAll("\\s+", " ").trim())) {
-                        scriptAddress = s.optString("address", scriptAddress);
+                    String addr = s.optString("address", "");
+                    // Match on ADDRESS first, text second. `clean:true` — what the MiniDapp registers with —
+                    // makes core store the script as Contract.cleanScript re-emits it, with its own spacing
+                    // and hex-case rules. A whitespace-collapse text compare misses that perfectly good row
+                    // and sends us off to register a duplicate.
+                    if (FutureCashContract.KNOWN_ADDRESS.equalsIgnoreCase(addr)
+                            || FutureCashContract.SCRIPT.equals(
+                                    s.optString("script", "").replaceAll("\\s+", " ").trim())) {
+                        found = addr;
                         break;
                     }
                 }
-                requestReload();
-                for (BaseView v : views) v.refresh();
+                if (!found.isEmpty()) { scriptAddress = found; afterAddress(); }
+                else if (!registerTried) { registerTried = true; registerScript(); }
+                else for (BaseView v : views) v.refresh();   // give up quietly; emptyReason explains
             }
-            @Override public void onError(String message) { handleErr(message); }
+            @Override public void onError(String message) { resolving = false; handleErr(message); }
         });
+    }
+
+    /** Add the script — only reached when {@code scripts} proved it absent, and only ONCE per session.
+     *  Without that cap a node that never hands back an address would have reload() → ensureScriptAddress()
+     *  → newscript loop on every block, rewriting the script table forever. */
+    private void registerScript() {
+        resolving = true;
+        node.cmd("newscript script:\"" + FutureCashContract.SCRIPT + "\" trackall:false", new NodeApi.Cb() {
+            @Override public void onResult(JSONObject json) {
+                resolving = false;
+                JSONObject r = json.optJSONObject("response");
+                if (r != null) scriptAddress = r.optString("address", scriptAddress);
+                if (!scriptAddress.isEmpty()) afterAddress();
+                else for (BaseView v : views) v.refresh();
+            }
+            @Override public void onError(String message) { resolving = false; handleErr(message); }
+        });
+    }
+
+    private void afterAddress() {
+        reload();
+        for (BaseView v : views) v.refresh();
+    }
+
+    /** Every address worth scanning: what this node derives, plus the canonical one as a backstop. */
+    private List<String> scanAddresses() {
+        List<String> out = new ArrayList<>();
+        if (!scriptAddress.isEmpty()) out.add(scriptAddress);
+        if (!FutureCashContract.KNOWN_ADDRESS.equalsIgnoreCase(scriptAddress)) {
+            out.add(FutureCashContract.KNOWN_ADDRESS);
+        }
+        return out;
     }
 
     public void requestReload() {
@@ -215,20 +257,59 @@ public class MainActivity extends AppCompatActivity {
             @Override public void onError(String message) { handleErr(message); }
         });
 
-        if (scriptAddress.isEmpty()) return;
-        node.cmd("coins address:" + scriptAddress + " relevant:true", new NodeApi.Cb() {
-            @Override public void onResult(JSONObject json) {
-                setPaired(true);
-                contractCoins.clear();
-                JSONArray arr = json.optJSONArray("response");
-                if (arr != null) for (int i = 0; i < arr.length(); i++) {
-                    JSONObject c = arr.optJSONObject(i);
-                    if (c != null) contractCoins.add(c);
+        // No address yet: keep trying rather than silently showing an empty list.
+        if (scriptAddress.isEmpty()) { ensureScriptAddress(); return; }
+        scanCoins();
+    }
+
+    /**
+     * Scan every candidate address for our relevant coins and merge the results.
+     *
+     * {@code relevant:true} is deliberate and load-bearing. We register with {@code trackall:false}, so the
+     * contract address is NOT in {@code Wallet.mAllTrackedAddress} and {@code TxPoWTreeNode.checkRelevant}
+     * keeps a stake only because state port 2 — its payout — is an address this wallet tracks. Core's
+     * relevance flag IS the "mine, not a stranger's" filter, applied before the coin ever reaches us.
+     *
+     * The per-address filter also keeps each reply small: a bare {@code coins relevant:true} returns the whole
+     * wallet, and this transport caps inbound at 256K chars.
+     */
+    private void scanCoins() {
+        final List<String> addrs = scanAddresses();
+        final List<JSONObject> merged = new ArrayList<>();
+        final HashSet<String> seen = new HashSet<>();
+        final int[] pending = { addrs.size() };
+        for (String a : addrs) {
+            node.cmd("coins address:" + a + " relevant:true", new NodeApi.Cb() {
+                @Override public void onResult(JSONObject json) {
+                    setPaired(true);
+                    JSONArray arr = json.optJSONArray("response");
+                    if (arr != null) for (int i = 0; i < arr.length(); i++) {
+                        JSONObject c = arr.optJSONObject(i);
+                        if (c == null || c.optBoolean("spent", false)) continue;
+                        String id = c.optString("coinid", "");
+                        if (!id.isEmpty() && !seen.add(id)) continue;   // same coin via both addresses
+                        merged.add(c);
+                    }
+                    if (--pending[0] == 0) publish(merged);
                 }
-                for (BaseView v : views) v.refresh();
-            }
-            @Override public void onError(String message) { handleErr(message); }
-        });
+                @Override public void onError(String message) {
+                    if (--pending[0] == 0) publish(merged);
+                    handleErr(message);
+                }
+            });
+        }
+    }
+
+    /** Adopt a completed scan. Callbacks are marshalled to the main thread by NodeApi, so this is single-threaded. */
+    private void publish(List<JSONObject> coins) {
+        contractCoins.clear();
+        contractCoins.addAll(coins);
+        // Count what payments() will reject, so a coin with malformed on-chain state is reported rather
+        // than silently disappearing between the node and the list.
+        malformed = 0;
+        for (JSONObject c : contractCoins) if (!FuturePayment.from(c).valid()) malformed++;
+        scanned = true;
+        for (BaseView v : views) v.refresh();
     }
 
     private void handleErr(String message) {
@@ -254,6 +335,27 @@ public class MainActivity extends AppCompatActivity {
     public int chainBlock() { return chainBlock; }
     public String scriptAddress() { return scriptAddress; }
     public int currentTab() { return viewPager.getCurrentItem(); }
+
+    /**
+     * Why the list is empty — a blank "nothing here" is indistinguishable from a bug, which is exactly how a
+     * real locked stake stayed invisible. Each branch names the step that produced nothing.
+     */
+    public String emptyReason() {
+        if (scriptAddress.isEmpty()) {
+            return "Finding the FutureCash contract on your node…\n\nIf this stays here, open Minima Core → Apps "
+                    + "and check FutureCash is enabled.";
+        }
+        if (!scanned) return "Reading your locked coins…";
+        if (malformed > 0) {
+            return malformed + (malformed == 1 ? " coin was" : " coins were") + " found at the contract but "
+                    + "carry malformed on-chain state, so they are not shown.\n\nContract " + Util.shorten(scriptAddress);
+        }
+        return "Nothing locked yet. Send Minima or a token to a future block.\n\nContract " + Util.shorten(scriptAddress)
+                + "\nNo coins here are flagged relevant by this node.";
+    }
+
+    /** The contract address actually in use — surfaced in About so it can be compared with the MiniDapp's. */
+    public String contractAddress() { return scriptAddress; }
 
     /** Parsed future-cash payments (coins at the script address relevant to this wallet). */
     public List<FuturePayment> payments() {

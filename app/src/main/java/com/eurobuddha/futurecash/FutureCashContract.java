@@ -17,6 +17,20 @@ public final class FutureCashContract {
     public static final String SCRIPT =
         "RETURN (@BLOCK GTE PREVSTATE(1) OR @COINAGE GTE PREVSTATE(4)) AND VERIFYOUT(@INPUT PREVSTATE(2) @AMOUNT @TOKENID FALSE)";
 
+    /**
+     * The canonical FutureCash address — where every FutureCash / Maximize stake on the chain actually sits.
+     * It is not a guess: core itself hardcodes it inside the bond covenant
+     * ({@code BondServer.BOND_SCRIPT}: {@code LET fcaddress=0xEA88…FA13}), and the MiniDapp carries the same
+     * constant as its {@code KNOWN_FC_ADDRESSES} backstop.
+     *
+     * We scan it ALONGSIDE whatever address this node derives, because the address is a hash of the exact
+     * script TEXT — {@code Wallet.addScript} does {@code new Address(zScript)} with no cleaning, so registering
+     * with {@code clean:true} (what the MiniDapp does) and {@code clean:false} (what we do) can hash to
+     * different addresses. Relying on the local derivation alone is what lets a real stake stay invisible.
+     */
+    public static final String KNOWN_ADDRESS =
+        "0xEA8823992AB3CEBBA855D68006F0D05B0C4838FE55885375837D90F98954FA13";
+
     // ---- state ports (set on `send`, exactly as the dapp) ----
     public static final int ST_RESERVED    = 0;   // "0xFF"
     public static final int ST_FUTUREBLOCK = 1;   // unlock block height

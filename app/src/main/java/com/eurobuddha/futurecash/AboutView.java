@@ -17,7 +17,8 @@ public class AboutView extends BaseView {
         build();
     }
 
-    @Override public void refresh() {}
+    // Rebuilt on refresh so the contract address appears as soon as it resolves (it is blank at construction).
+    @Override public void refresh() { build(); }
 
     private void build() {
         container.removeAllViews();
@@ -41,6 +42,23 @@ public class AboutView extends BaseView {
 
         container.addView(cta("Send to the future", true, v -> act.goToTab(MainActivity.TAB_SEND)));
         container.addView(cta("View future payments", false, v -> act.goToTab(MainActivity.TAB_FUTURE)));
+
+        // The contract address this app is actually scanning. If a stake shows in the MiniDapp but not here,
+        // this is the first thing to compare — tap to copy.
+        final String addr = act.contractAddress();
+        TextView contract = new TextView(act);
+        contract.setText("Contract\n" + (addr.isEmpty() ? "resolving…" : addr));
+        contract.setTextColor(FcDesign.DIM_2);
+        contract.setTextSize(11f);
+        contract.setTypeface(android.graphics.Typeface.MONOSPACE);
+        contract.setGravity(Gravity.CENTER);
+        contract.setPadding(0, dp(24), 0, 0);
+        if (!addr.isEmpty()) contract.setOnClickListener(v -> {
+            ((android.content.ClipboardManager) act.getSystemService(android.content.Context.CLIPBOARD_SERVICE))
+                    .setPrimaryClip(android.content.ClipData.newPlainText("Contract", addr));
+            android.widget.Toast.makeText(act, "Copied", android.widget.Toast.LENGTH_SHORT).show();
+        });
+        container.addView(contract);
 
         TextView foot = new TextView(act);
         foot.setText("FutureCash is an on-chain Minima smart contract — fully interoperable with the FutureCash MiniDapp.");

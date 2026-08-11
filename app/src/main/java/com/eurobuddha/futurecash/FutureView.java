@@ -45,7 +45,7 @@ public class FutureView extends BaseView {
         for (FuturePayment p : act.payments()) (p.matured(tip) ? ready : pending).add(p);
 
         if (ready.isEmpty() && pending.isEmpty()) {
-            container.addView(empty("No future payments yet."));
+            container.addView(empty(act.emptyReason()));
             return;
         }
         if (!ready.isEmpty()) {
