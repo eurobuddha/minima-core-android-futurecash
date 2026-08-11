@@ -34,4 +34,4 @@ Install, then enable **FutureCash** in Minima Core → Apps to authorize the IPC
 ## Releases
 
 Versioned APKs are published to the [PandaApps catalog](https://github.com/eurobuddha/minima-core-apks)
-(`apks.json`). Current: **v0.2.4**.
+(`apks.json`). Current: **v0.2.5**.

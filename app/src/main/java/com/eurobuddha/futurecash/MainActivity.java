@@ -24,6 +24,7 @@ import org.minimarex.minimaapi.MinimaAPI;
 import org.minimarex.minimaapi.MinimaAPIMessages;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -357,13 +358,32 @@ public class MainActivity extends AppCompatActivity {
     /** The contract address actually in use — surfaced in About so it can be compared with the MiniDapp's. */
     public String contractAddress() { return scriptAddress; }
 
-    /** Parsed future-cash payments (coins at the script address relevant to this wallet). */
+    /**
+     * Parsed future-cash payments (coins at the script address relevant to this wallet), NEWEST FIRST.
+     *
+     * The sort is ours because the node does not do it: core's coins.java only sorts when {@code order:asc}
+     * is asked for — the default {@code "desc"} is a no-op branch — so the reply arrives in tree-walk order,
+     * which scatters ready and locked payments through the list. Merging two address scans shuffles it
+     * further still.
+     *
+     * Ordered by the block the coin was created in: on-chain, always present, and monotonic. The port-3
+     * timestamp only breaks ties within a block, since it is sender-supplied state rather than chain truth.
+     */
     public List<FuturePayment> payments() {
         List<FuturePayment> out = new ArrayList<>();
         for (JSONObject c : contractCoins) {
             FuturePayment p = FuturePayment.from(c);
             if (p.valid()) out.add(p);
         }
+        Collections.sort(out, (a, b) -> {
+            int byBlock = Long.compare(b.createdBlock, a.createdBlock);
+            if (byBlock != 0) return byBlock;
+            int byTime = Long.compare(b.createdMs, a.createdMs);
+            if (byTime != 0) return byTime;
+            // Same block and same stamp: coinid keeps the order stable across refreshes so cards
+            // don't swap places under the user's finger.
+            return String.valueOf(a.coinid).compareTo(String.valueOf(b.coinid));
+        });
         return out;
     }
 
