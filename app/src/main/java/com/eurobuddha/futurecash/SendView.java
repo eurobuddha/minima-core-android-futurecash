@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/** Send tab — create a future payment + your existing payments. */
+/** Send tab — create a future payment + everything ready to collect right now. */
 public class SendView extends BaseView {
 
     private final LinearLayout container;
@@ -34,18 +34,27 @@ public class SendView extends BaseView {
         }));
 
         TextView h = new TextView(act);
-        h.setText("My future payments");
+        h.setText("Ready to collect");
         h.setTextColor(FcDesign.TEXT);
         h.setTextSize(16f);
         h.setTypeface(Typeface.DEFAULT_BOLD);
         h.setPadding(0, dp(20), 0, dp(12));
         container.addView(h);
 
-        List<FuturePayment> payments = act.payments();
-        if (payments.isEmpty()) {
-            container.addView(empty(act.emptyReason()));
+        // This page is the collectable ones only; anything still locked lives on the Future tab.
+        List<FuturePayment> ready = act.readyPayments();
+        if (!ready.isEmpty()) {
+            for (FuturePayment p : ready) container.addView(FcCardUi.card(act, p));
+            return;
+        }
+        // Nothing ready. If money IS locked, say so and point at it — an unqualified "nothing here"
+        // on the page that used to list every payment reads as though the stakes have gone.
+        int locked = act.lockedPayments().size();
+        if (locked > 0) {
+            container.addView(empty("Nothing ready to collect yet.\n\n"
+                    + locked + (locked == 1 ? " payment is" : " payments are") + " still locked — see the Future tab."));
         } else {
-            for (FuturePayment p : payments) container.addView(FcCardUi.card(act, p));
+            container.addView(empty(act.emptyReason()));
         }
     }
 

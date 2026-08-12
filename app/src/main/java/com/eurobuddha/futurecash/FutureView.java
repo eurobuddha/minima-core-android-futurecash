@@ -5,10 +5,9 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/** Future tab — your locked payments split into Ready (collectable now) and Pending (still locked). */
+/** Future tab — payments that are NOT collectable yet, soonest to unlock first. Ready ones live on the Send tab. */
 public class FutureView extends BaseView {
 
     private final LinearLayout container;
@@ -34,40 +33,28 @@ public class FutureView extends BaseView {
         container.addView(h);
 
         TextView blurb = new TextView(act);
-        blurb.setText("Money locked until a future block. Tap a ready payment to collect it to the recipient.");
+        blurb.setText("Money still locked, soonest to unlock first. Collectable payments move to the Send tab.");
         blurb.setTextColor(FcDesign.DIM);
         blurb.setTextSize(14f);
         blurb.setPadding(0, 0, 0, dp(16));
         container.addView(blurb);
 
-        int tip = act.chainBlock();
-        List<FuturePayment> ready = new ArrayList<>(), pending = new ArrayList<>();
-        for (FuturePayment p : act.payments()) (p.matured(tip) ? ready : pending).add(p);
-
-        if (ready.isEmpty() && pending.isEmpty()) {
-            container.addView(empty(act.emptyReason()));
+        // Locked only — the ready ones are the Send tab's list. No Ready/Pending sections here: with a
+        // single bucket the unlock-block order carries the whole story.
+        List<FuturePayment> pending = act.lockedPayments();
+        if (!pending.isEmpty()) {
+            for (FuturePayment p : pending) container.addView(FcCardUi.card(act, p));
             return;
         }
-        if (!ready.isEmpty()) {
-            container.addView(section("Ready to collect"));
-            for (FuturePayment p : ready) container.addView(FcCardUi.card(act, p));
-        }
-        if (!pending.isEmpty()) {
-            container.addView(section("Pending"));
-            for (FuturePayment p : pending) container.addView(FcCardUi.card(act, p));
+        int ready = act.readyPayments().size();
+        if (ready > 0) {
+            container.addView(empty("Nothing still locked.\n\n"
+                    + ready + (ready == 1 ? " payment is" : " payments are") + " ready to collect — see the Send tab."));
+        } else {
+            container.addView(empty(act.emptyReason()));
         }
     }
 
-    private TextView section(String text) {
-        TextView t = new TextView(act);
-        t.setText(text.toUpperCase());
-        t.setTextColor(FcDesign.DIM);
-        t.setTextSize(11f);
-        t.setTypeface(Typeface.DEFAULT_BOLD);
-        t.setLetterSpacing(0.08f);
-        t.setPadding(dp(2), dp(8), 0, dp(10));
-        return t;
-    }
 
     private TextView empty(String text) {
         TextView t = new TextView(act);

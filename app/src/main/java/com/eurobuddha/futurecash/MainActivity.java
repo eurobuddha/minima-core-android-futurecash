@@ -358,6 +358,20 @@ public class MainActivity extends AppCompatActivity {
     /** The contract address actually in use — surfaced in About so it can be compared with the MiniDapp's. */
     public String contractAddress() { return scriptAddress; }
 
+    /** Collectable now — the main page's list. Keeps payments()' unlock-block order. */
+    public List<FuturePayment> readyPayments() {
+        List<FuturePayment> out = new ArrayList<>();
+        for (FuturePayment p : payments()) if (p.matured(chainBlock)) out.add(p);
+        return out;
+    }
+
+    /** Still locked — the Future tab's list. Soonest to unlock first. */
+    public List<FuturePayment> lockedPayments() {
+        List<FuturePayment> out = new ArrayList<>();
+        for (FuturePayment p : payments()) if (!p.matured(chainBlock)) out.add(p);
+        return out;
+    }
+
     /**
      * Parsed future-cash payments (coins at the script address relevant to this wallet), ordered by
      * UNLOCK BLOCK ASCENDING — soonest to collect at the top, furthest into the future at the bottom.

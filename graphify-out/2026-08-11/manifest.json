@@ -1,7 +1,7 @@
 {
   "app/build.gradle": {
-    "mtime": 1786483886.320045,
-    "ast_hash": "ce77d7d4a19ab71cad31b4875621069c",
+    "mtime": 1786484219.8586059,
+    "ast_hash": "bf1509b9b368394df10998fbf6f374d1",
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/AboutView.java": {
@@ -50,8 +50,8 @@
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/MainActivity.java": {
-    "mtime": 1786483561.0471425,
-    "ast_hash": "c36597f720cbdd4fd49ad729c33d4f6b",
+    "mtime": 1786484219.853431,
+    "ast_hash": "4e77d73b9057a66541b8bea77e67c7b3",
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/MainPager.java": {
@@ -100,8 +100,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1786483886.3276966,
-    "ast_hash": "ed93f233903f73e63c2cc53a2518efc3",
+    "mtime": 1786484219.8615851,
+    "ast_hash": "86b4e2641ff26e507ad917d1ddd6b353",
     "semantic_hash": ""
   },
   "app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png": {
