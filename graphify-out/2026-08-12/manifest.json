@@ -1,13 +1,13 @@
 {
   "app/build.gradle": {
-    "mtime": 1787222495.3332937,
-    "ast_hash": "058fb155dc239d6c1eae8b0045227e8e",
-    "semantic_hash": "058fb155dc239d6c1eae8b0045227e8e"
+    "mtime": 1786484417.3899748,
+    "ast_hash": "8f0fa81aa89afd3b27017b85e8c14b53",
+    "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/AboutView.java": {
     "mtime": 1786483513.4242127,
     "ast_hash": "0c48274e59ff35fd304cd6c237fd75d4",
-    "semantic_hash": "0c48274e59ff35fd304cd6c237fd75d4"
+    "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/BaseView.java": {
     "mtime": 1783341806.4372418,
@@ -37,7 +37,7 @@
   "app/src/main/java/com/eurobuddha/futurecash/FutureCashContract.java": {
     "mtime": 1786483431.2757,
     "ast_hash": "8639e538d437cbc5371ef84b3880453d",
-    "semantic_hash": "8639e538d437cbc5371ef84b3880453d"
+    "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/FuturePayment.java": {
     "mtime": 1784837114.060002,
@@ -45,14 +45,14 @@
     "semantic_hash": "739db4db1de050e77672f566333a3482"
   },
   "app/src/main/java/com/eurobuddha/futurecash/FutureView.java": {
-    "mtime": 1786525274.5923853,
-    "ast_hash": "ded222ae7b264f2d7feecf1cecb32715",
-    "semantic_hash": "ded222ae7b264f2d7feecf1cecb32715"
+    "mtime": 1786483501.5565073,
+    "ast_hash": "0123ea2d39f0787be0289c35f00a7a94",
+    "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/MainActivity.java": {
-    "mtime": 1786525223.472232,
-    "ast_hash": "f461b407ac7249d724e9b5d418d57a71",
-    "semantic_hash": "f461b407ac7249d724e9b5d418d57a71"
+    "mtime": 1786484409.1142254,
+    "ast_hash": "4a6930146bfbb0e0af5c3a093d59633b",
+    "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/MainPager.java": {
     "mtime": 1783341806.4419994,
@@ -65,9 +65,9 @@
     "semantic_hash": "a0fc116dea1eacb8071fa5aba35fd52c"
   },
   "app/src/main/java/com/eurobuddha/futurecash/SendView.java": {
-    "mtime": 1786525274.5945222,
-    "ast_hash": "bf622dda13dfce1d8d9981c5bda1d2bf",
-    "semantic_hash": "bf622dda13dfce1d8d9981c5bda1d2bf"
+    "mtime": 1786483497.8263733,
+    "ast_hash": "a67c7e2bb68fe075c68aa1fa1bbcd50a",
+    "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/futurecash/SubActivity.java": {
     "mtime": 1783341806.4340017,
@@ -95,48 +95,38 @@
     "semantic_hash": "a0245390ba0641ae7df832cc3b8e49ff"
   },
   "CLAUDE.md": {
-    "mtime": 1786883577.5770566,
-    "ast_hash": "46e9035553a7ba076e59754595bc542a",
-    "semantic_hash": "46e9035553a7ba076e59754595bc542a"
+    "mtime": 1784124679.051092,
+    "ast_hash": "4439d09bc81851d89f9ffcecc4136dcf",
+    "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1786525282.796135,
-    "ast_hash": "9def09d2a074da431efaf17d8ca4317b",
-    "semantic_hash": "9def09d2a074da431efaf17d8ca4317b"
+    "mtime": 1786484417.393102,
+    "ast_hash": "85e2b831e36e4338150aa547dd6acf68",
+    "semantic_hash": ""
   },
   "app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png": {
     "mtime": 1782668393.731896,
     "ast_hash": "21b98b40443c76a12d0c69a0c218b532",
-    "semantic_hash": "21b98b40443c76a12d0c69a0c218b532"
+    "semantic_hash": ""
   },
   "app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png": {
     "mtime": 1782668393.7303827,
     "ast_hash": "917306a51c9d77442fc1bc1a921d6793",
-    "semantic_hash": "917306a51c9d77442fc1bc1a921d6793"
+    "semantic_hash": ""
   },
   "app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png": {
     "mtime": 1782668393.7340558,
     "ast_hash": "c3d01f1a2198ca707c44fda1d3b1bcee",
-    "semantic_hash": "c3d01f1a2198ca707c44fda1d3b1bcee"
+    "semantic_hash": ""
   },
   "app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png": {
     "mtime": 1782668393.7373874,
     "ast_hash": "1c884a674aa6c321cb61441690ccc260",
-    "semantic_hash": "1c884a674aa6c321cb61441690ccc260"
+    "semantic_hash": ""
   },
   "app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png": {
     "mtime": 1782668393.7401795,
     "ast_hash": "b23f24603a3ad3f9ead99823cbdab751",
-    "semantic_hash": "b23f24603a3ad3f9ead99823cbdab751"
-  },
-  ".githooks/install.sh": {
-    "mtime": 1786883577.5585165,
-    "ast_hash": "f31b37c6d1b5d340a5623f1715457ea0",
-    "semantic_hash": "f31b37c6d1b5d340a5623f1715457ea0"
-  },
-  ".githooks/pre-commit": {
-    "mtime": 1786883577.5552897,
-    "ast_hash": "03526be838d5dd774506cc1f8b47f38c",
-    "semantic_hash": "03526be838d5dd774506cc1f8b47f38c"
+    "semantic_hash": ""
   }
 }

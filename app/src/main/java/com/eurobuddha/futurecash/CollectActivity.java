@@ -110,8 +110,9 @@ public class CollectActivity extends SubActivity {
         hero.addView(amountTv);
         form.addView(hero);
 
-        // stats
-        addStat("Recipient", FcCardUi.shortHex(p.recipient));
+        // stats — the recipient is NOT here: it is a full, copyable address under "Recipient address"
+        // below. A right-aligned stat row can only hold it by abbreviating, and an abbreviated address
+        // is not information.
         addStat("Unlock block", String.valueOf(p.futureBlock));
         if (tipReady) {
             long left = p.blocksRemaining(tip);

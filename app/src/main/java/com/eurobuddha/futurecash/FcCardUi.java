@@ -66,10 +66,13 @@ public final class FcCardUi {
         amt.setTypeface(Typeface.DEFAULT_BOLD);
         titleCol.addView(amt);
         TextView to = new TextView(act);
-        to.setText("to " + shortHex(p.recipient));
+        // FULL recipient address, never abbreviated. A truncated address cannot be pasted into a wallet
+        // or an explorer, which is the only thing it is for — so it wraps rather than losing characters.
+        to.setText("to " + p.recipient);
         to.setTextColor(FcDesign.DIM);
-        to.setTextSize(12f);
-        to.setSingleLine(true);
+        to.setTextSize(11f);
+        to.setTypeface(Typeface.MONOSPACE);
+        to.setPadding(0, dp(act, 2), 0, 0);
         titleCol.addView(to);
         head.addView(titleCol);
 
@@ -151,11 +154,6 @@ public final class FcCardUi {
         } catch (Exception e) { return b.toPlainString(); }
     }
 
-    static String shortHex(String s) {
-        if (s == null) return "";
-        s = s.startsWith("0x") ? s.substring(2) : s;
-        return s.length() <= 10 ? s : "0x" + s.substring(0, 6) + "…" + s.substring(s.length() - 4);
-    }
 
     /** Estimate a human span from a block count (~50 s/block). */
     static String blocksToSpan(long blocks) {

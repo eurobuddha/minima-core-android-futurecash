@@ -349,9 +349,9 @@ public class MainActivity extends AppCompatActivity {
         if (!scanned) return "Reading your locked coins…";
         if (malformed > 0) {
             return malformed + (malformed == 1 ? " coin was" : " coins were") + " found at the contract but "
-                    + "carry malformed on-chain state, so they are not shown.\n\nContract " + Util.shorten(scriptAddress);
+                    + "carry malformed on-chain state, so they are not shown.\n\nContract\n" + scriptAddress;
         }
-        return "Nothing locked yet. Send Minima or a token to a future block.\n\nContract " + Util.shorten(scriptAddress)
+        return "Nothing locked yet. Send Minima or a token to a future block.\n\nContract\n" + scriptAddress
                 + "\nNo coins here are flagged relevant by this node.";
     }
 

@@ -20,7 +20,8 @@ public final class FutureCashContract {
     /**
      * The canonical FutureCash address — where every FutureCash / Maximize stake on the chain actually sits.
      * It is not a guess: core itself hardcodes it inside the bond covenant
-     * ({@code BondServer.BOND_SCRIPT}: {@code LET fcaddress=0xEA88…FA13}), and the MiniDapp carries the same
+     * ({@code BondServer.BOND_SCRIPT}, which sets {@code fcaddress} to the same value as KNOWN_ADDRESS
+     * below), and the MiniDapp carries the same
      * constant as its {@code KNOWN_FC_ADDRESSES} backstop.
      *
      * We scan it ALONGSIDE whatever address this node derives, because the address is a hash of the exact
