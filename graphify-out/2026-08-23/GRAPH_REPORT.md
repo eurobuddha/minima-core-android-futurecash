@@ -1,66 +1,56 @@
-# Graph Report - futurecash  (2026-08-23)
+# Graph Report - /Users/eurobuddha/Projects/minima/apks/futurecash  (2026-08-23)
 
 ## Corpus Check
-- 23 files · ~14,630 words
+- 15 files · ~14,624 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 299 nodes · 513 edges · 37 communities (17 shown, 20 thin omitted)
-- Extraction: 83% EXTRACTED · 16% INFERRED · 1% AMBIGUOUS · INFERRED: 80 edges (avg confidence: 0.81)
-- Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `507b43b1`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
+- 296 nodes · 501 edges · 32 communities (17 shown, 15 thin omitted)
+- Extraction: 86% EXTRACTED · 13% INFERRED · 1% AMBIGUOUS · INFERRED: 66 edges (avg confidence: 0.82)
+- Token cost: 173,271 input · 0 output
 
 ## Community Hubs (Navigation)
-- MainActivity
-- FuturePayment
-- android.widget.LinearLayout
-- FutureCash Launcher Icon Foreground (hdpi)
-- BaseView
-- CollectActivity
-- CreateFutureActivity
-- SubActivity
-- Minima FutureCash (native Android app)
-- Cb
-- gradlew
-- Minima FutureCash (native Android)
-- User instructions — AUTHORITATIVE. These override default behavior and must be followed exactly.
-- FcDesign
-- RULE 0 — Explicit User Instructions Are Blocking
-- install.sh
-- pre-commit
-- LinearLayout
-- LinearLayout
-- EditText
-- Bundle
-- Handler
-- JSONObject
-- LinearLayout
-- View
-- View
-- OnClickListener
-- Override
-- ViewPager
-- BaseView
-- LinearLayout
-- JSONObject
-- BroadcastReceiver
-- FuturePayment
+- Main Activity Shell
+- Payment Card Rendering
+- About & Future Tabs
+- Launcher Icon Identity
+- Tab Page Scaffolding
+- Collect Transaction Flow
+- Create Future Payment Flow
+- Sub-Screen Form Helpers
+- FutureCash Covenant Domain
+- Node IPC Transport
+- Gradle Wrapper
+- README Documentation
+- Project Instructions
+- Design Tokens
+- RULE 0 Working Agreement
+- Git Hook Installer
+- Pre-commit Version Gate
+- LinearLayout Ref
+- LinearLayout Ref
+- BroadcastReceiver Ref
+- Bundle Ref
+- Handler Ref
+- JSONObject Ref
+- LinearLayout Ref
+- View Ref
+- LinearLayout Ref
+- OnClickListener Ref
+- Override Ref
+- ViewPager Ref
 
 ## God Nodes (most connected - your core abstractions)
 1. `MainActivity` - 45 edges
 2. `CreateFutureActivity` - 19 edges
 3. `CollectActivity` - 17 edges
-4. `Cb` - 17 edges
-5. `SubActivity` - 16 edges
-6. `BaseView` - 13 edges
+4. `SubActivity` - 17 edges
+5. `BaseView` - 13 edges
+6. `FuturePayment` - 13 edges
 7. `NodeApi` - 13 edges
-8. `FuturePayment` - 11 edges
+8. `Cb` - 13 edges
 9. `MainPager` - 10 edges
-10. `Util` - 9 edges
+10. `Util` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Versioning Guardrail — Every Code Change Ships With a Version Bump` --semantically_similar_to--> `No SIGNEDBY in the Covenant — Signature-free Collection`  [INFERRED] [semantically similar]
@@ -81,61 +71,61 @@
 - **FutureCash time-locked payment lifecycle** — readme_send_to_the_future, readme_futurecash_covenant, readme_maturity, readme_collect [EXTRACTED 1.00]
 - **Covenant address interoperability via verbatim script port** — readme_newscript, readme_futurecash_covenant, readme_futurecash_web_dapp, readme_minima_core_node [EXTRACTED 1.00]
 
-## Communities (37 total, 20 thin omitted)
+## Communities (32 total, 15 thin omitted)
 
-### Community 0 - "MainActivity"
-Cohesion: 0.10
-Nodes (12): android.os.Bundle, android.os.Handler, androidx.appcompat.app.AppCompatActivity, androidx.viewpager.widget.ViewPager, BroadcastReceiver, FuturePayment, Override, TextView (+4 more)
+### Community 0 - "Main Activity Shell"
+Cohesion: 0.08
+Nodes (15): android.content.BroadcastReceiver, android.os.Bundle, android.os.Handler, androidx.appcompat.app.AppCompatActivity, androidx.viewpager.widget.ViewPager, BaseView, LinearLayout, Override (+7 more)
 
-### Community 1 - "FuturePayment"
-Cohesion: 0.17
-Nodes (3): FuturePayment, JSONObject, Util
+### Community 1 - "Payment Card Rendering"
+Cohesion: 0.08
+Nodes (7): FcCardUi, View, FutureCashContract, FuturePayment, JSONObject, JSONObject, Util
 
-### Community 2 - "android.widget.LinearLayout"
+### Community 2 - "About & Future Tabs"
 Cohesion: 0.11
-Nodes (16): android.view.View, android.widget.Button, android.widget.LinearLayout, AboutView, OnClickListener, Override, FutureView, Override (+8 more)
+Nodes (17): android.view.View, android.widget.Button, android.widget.LinearLayout, android.widget.TextView, AboutView, OnClickListener, Override, FutureView (+9 more)
 
-### Community 3 - "FutureCash Launcher Icon Foreground (hdpi)"
+### Community 3 - "Launcher Icon Identity"
 Cohesion: 0.11
 Nodes (27): Android Adaptive Icon Foreground Layer, FutureCash Launcher Icon Foreground (hdpi), Android Adaptive Icon Foreground Layer (hdpi density bucket), FutureCash App Visual Identity, Analog Clock Face Motif, Minima Companion APK Iconography, Time-Locked / Future-Dated Funds, FutureCash Launcher Icon Foreground (xhdpi) (+19 more)
 
-### Community 4 - "BaseView"
+### Community 4 - "Tab Page Scaffolding"
 Cohesion: 0.12
 Nodes (9): BaseView, View, Override, View, MainPager, NonNull, PagerAdapter, SuppressWarnings (+1 more)
 
-### Community 5 - "CollectActivity"
-Cohesion: 0.10
-Nodes (12): android.content.BroadcastReceiver, android.widget.EditText, android.widget.TextView, CollectActivity, BroadcastReceiver, FuturePayment, Override, TextView (+4 more)
+### Community 5 - "Collect Transaction Flow"
+Cohesion: 0.17
+Nodes (5): CollectActivity, BroadcastReceiver, EditText, Override, TextView
 
-### Community 6 - "CreateFutureActivity"
-Cohesion: 0.12
-Nodes (9): CreateFutureActivity, EditText, Override, TextView, MsCb, FutureCashContract, ArrayAdapter, SimpleDateFormat (+1 more)
+### Community 6 - "Create Future Payment Flow"
+Cohesion: 0.17
+Nodes (9): CreateFutureActivity, EditText, Override, TextView, MsCb, Cb, ArrayAdapter, SimpleDateFormat (+1 more)
 
-### Community 7 - "SubActivity"
-Cohesion: 0.20
+### Community 7 - "Sub-Screen Form Helpers"
+Cohesion: 0.22
 Nodes (7): Bundle, EditText, LinearLayout, Override, TextView, SubActivity, AppCompatActivity
 
-### Community 8 - "Minima FutureCash (native Android app)"
+### Community 8 - "FutureCash Covenant Domain"
 Cohesion: 0.17
 Nodes (16): Pre-commit Version-Bump Hook (.githooks/pre-commit), Versioning Guardrail — Every Code Change Ships With a Version Bump, Collect (single-shot spend of matured coin), FutureCash Covenant Address, FutureCash Web Dapp (address-compatible sibling), Maturity (unlock block / coin-age threshold), Local Minima Core Node, Minima FutureCash (native Android app) (+8 more)
 
-### Community 9 - "Cb"
-Cohesion: 0.18
-Nodes (7): Cb, Handler, JSONObject, NodeApi, PairingListener, Context, MinimaAPI
+### Community 9 - "Node IPC Transport"
+Cohesion: 0.23
+Nodes (6): Handler, JSONObject, NodeApi, PairingListener, Context, MinimaAPI
 
-### Community 10 - "gradlew"
+### Community 10 - "Gradle Wrapper"
 Cohesion: 0.60
 Nodes (3): gradlew script, die(), warn()
 
-### Community 11 - "Minima FutureCash (native Android)"
+### Community 11 - "README Documentation"
 Cohesion: 0.40
 Nodes (4): Build, How it works, Minima FutureCash (native Android), Releases
 
-### Community 12 - "User instructions — AUTHORITATIVE. These override default behavior and must be followed exactly."
+### Community 12 - "Project Instructions"
 Cohesion: 0.50
 Nodes (3): RULE 0 (highest priority) — Follow the user's explicit instructions. They are BLOCKING, not suggestions., User instructions — AUTHORITATIVE. These override default behavior and must be followed exactly., Versioning guardrail — every code change ships with a version bump
 
-### Community 14 - "RULE 0 — Explicit User Instructions Are Blocking"
+### Community 14 - "RULE 0 Working Agreement"
 Cohesion: 0.67
 Nodes (3): Disagree Openly, Never Disobey Quietly, Reuse Before You Reinvent, RULE 0 — Explicit User Instructions Are Blocking
 
@@ -156,7 +146,7 @@ Nodes (3): Disagree Openly, Never Disobey Quietly, Reuse Before You Reinvent, RU
 ## Knowledge Gaps
 - **15 isolated node(s):** `RULE 0 (highest priority) — Follow the user's explicit instructions. They are BLOCKING, not suggestions.`, `Versioning guardrail — every code change ships with a version bump`, `How it works`, `Build`, `Releases` (+10 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -173,5 +163,5 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **What is the exact relationship between `Orange-on-Black Brand Palette` and `Minima Companion APK Family Branding`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `MainActivity` connect `MainActivity` to `android.widget.LinearLayout`, `BaseView`, `CollectActivity`, `SubActivity`, `Cb`?**
-  _High betweenness centrality (0.266) - this node is a cross-community bridge._
+- **Why does `MainActivity` connect `Main Activity Shell` to `Payment Card Rendering`, `About & Future Tabs`, `Tab Page Scaffolding`?**
+  _High betweenness centrality (0.298) - this node is a cross-community bridge._

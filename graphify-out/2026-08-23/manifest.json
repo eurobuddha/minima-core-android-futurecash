@@ -1,8 +1,8 @@
 {
   "app/build.gradle": {
-    "mtime": 1787525114.225279,
-    "ast_hash": "c2d5d0355fcd6248ee147e95a136b53e",
-    "semantic_hash": ""
+    "mtime": 1787222495.3332937,
+    "ast_hash": "058fb155dc239d6c1eae8b0045227e8e",
+    "semantic_hash": "058fb155dc239d6c1eae8b0045227e8e"
   },
   "app/src/main/java/com/eurobuddha/futurecash/AboutView.java": {
     "mtime": 1786483513.4242127,
@@ -15,9 +15,9 @@
     "semantic_hash": "5a5cf145af18485681bbb374d2c66809"
   },
   "app/src/main/java/com/eurobuddha/futurecash/CollectActivity.java": {
-    "mtime": 1787525094.422762,
-    "ast_hash": "cc7ca93cce594fadad211753b5605af9",
-    "semantic_hash": ""
+    "mtime": 1784837141.8195846,
+    "ast_hash": "9ae1101584615228c8b450655256175e",
+    "semantic_hash": "9ae1101584615228c8b450655256175e"
   },
   "app/src/main/java/com/eurobuddha/futurecash/CreateFutureActivity.java": {
     "mtime": 1784837152.2962422,
@@ -25,9 +25,9 @@
     "semantic_hash": "3dd9ba4a5d6b71147c75dcc9428da557"
   },
   "app/src/main/java/com/eurobuddha/futurecash/FcCardUi.java": {
-    "mtime": 1787525094.4207351,
-    "ast_hash": "a8c1e855956d43609a158b0f26c34076",
-    "semantic_hash": ""
+    "mtime": 1783341806.4390543,
+    "ast_hash": "ff35c9087bb766dc1ed677f55a277d09",
+    "semantic_hash": "ff35c9087bb766dc1ed677f55a277d09"
   },
   "app/src/main/java/com/eurobuddha/futurecash/FcDesign.java": {
     "mtime": 1783341806.4393709,
@@ -35,9 +35,9 @@
     "semantic_hash": "1420911fd954c4c2e4c4557e956f72c5"
   },
   "app/src/main/java/com/eurobuddha/futurecash/FutureCashContract.java": {
-    "mtime": 1787525107.4312644,
-    "ast_hash": "9620007414c1f3f8b98447f7c3440bbe",
-    "semantic_hash": ""
+    "mtime": 1786483431.2757,
+    "ast_hash": "8639e538d437cbc5371ef84b3880453d",
+    "semantic_hash": "8639e538d437cbc5371ef84b3880453d"
   },
   "app/src/main/java/com/eurobuddha/futurecash/FuturePayment.java": {
     "mtime": 1784837114.060002,
@@ -50,9 +50,9 @@
     "semantic_hash": "ded222ae7b264f2d7feecf1cecb32715"
   },
   "app/src/main/java/com/eurobuddha/futurecash/MainActivity.java": {
-    "mtime": 1787525094.423287,
-    "ast_hash": "38a24da0cb3839e8a1a4994aa3824b7c",
-    "semantic_hash": ""
+    "mtime": 1786525223.472232,
+    "ast_hash": "f461b407ac7249d724e9b5d418d57a71",
+    "semantic_hash": "f461b407ac7249d724e9b5d418d57a71"
   },
   "app/src/main/java/com/eurobuddha/futurecash/MainPager.java": {
     "mtime": 1783341806.4419994,
@@ -75,9 +75,9 @@
     "semantic_hash": "daaa56d294b45d14ffbdad22d8ef11df"
   },
   "app/src/main/java/com/eurobuddha/futurecash/Util.java": {
-    "mtime": 1787525094.4238214,
-    "ast_hash": "c6c00ab78d35abe6e3440c3f01d37ac8",
-    "semantic_hash": ""
+    "mtime": 1784837107.5971146,
+    "ast_hash": "562829658f68261cb0720aaa2b155881",
+    "semantic_hash": "562829658f68261cb0720aaa2b155881"
   },
   "build.gradle": {
     "mtime": 1782376776.0,
@@ -100,9 +100,9 @@
     "semantic_hash": "46e9035553a7ba076e59754595bc542a"
   },
   "README.md": {
-    "mtime": 1787525114.2286336,
-    "ast_hash": "6d5ef2defb3eb138e3d008a9939a3e14",
-    "semantic_hash": ""
+    "mtime": 1786525282.796135,
+    "ast_hash": "9def09d2a074da431efaf17d8ca4317b",
+    "semantic_hash": "9def09d2a074da431efaf17d8ca4317b"
   },
   "app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png": {
     "mtime": 1782668393.731896,
