@@ -20,8 +20,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.minimarex.minimaapi.MinimaAPI;
-import org.minimarex.minimaapi.MinimaAPIMessages;
+import com.eurobuddha.minimaapi.MinimaAPI;
+import com.eurobuddha.minimaapi.MinimaAPIMessages;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
 
-    static final String NODE_PKG = "org.minimarex.minimacore";
+    static final String NODE_PKG = "com.eurobuddha.minimacore";
     public static final int TAB_SEND = 0, TAB_FUTURE = 1, TAB_ABOUT = 2;
 
     private NodeApi node;
@@ -326,6 +326,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void openMinimaCore() {
         Intent launch = getPackageManager().getLaunchIntentForPackage(NODE_PKG);
+        if (launch == null) launch = getPackageManager().getLaunchIntentForPackage("com.eurobuddha.minimablock");
+        if (launch == null) launch = getPackageManager().getLaunchIntentForPackage("com.eurobuddha.pandamonium");
         if (launch != null) startActivity(launch);
         else Toast.makeText(this, "Minima Core is not installed.", Toast.LENGTH_LONG).show();
     }

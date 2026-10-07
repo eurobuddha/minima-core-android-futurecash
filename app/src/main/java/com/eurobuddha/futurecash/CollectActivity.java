@@ -16,8 +16,8 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 
 import org.json.JSONObject;
-import org.minimarex.minimaapi.MinimaAPI;
-import org.minimarex.minimaapi.MinimaAPIMessages;
+import com.eurobuddha.minimaapi.MinimaAPI;
+import com.eurobuddha.minimaapi.MinimaAPIMessages;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -224,10 +224,8 @@ public class CollectActivity extends SubActivity {
         }
         node.cmd(cmds.get(i), new NodeApi.Cb() {
             @Override public void onResult(JSONObject j) {
-                // Build steps must report status:true; only txnpost is async-mined (a missing status is ok there,
-                // istransaction may be false). Defaulting build steps to false so a silently-failed step can't proceed.
-                boolean isPost = cmds.get(i).startsWith("txnpost");
-                if (!j.optBoolean("status", isPost)) { fail(j.optString("error", "Collect failed"), id); return; }
+                // Every step needs a complete success reply; mining is not confirmation.
+                if (!j.optBoolean("status", false)) { fail(j.optString("error", "Collect failed"), id); return; }
                 runSequence(cmds, i + 1, id);
             }
             @Override public void onError(String m) {
