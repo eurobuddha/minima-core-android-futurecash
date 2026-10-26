@@ -48,7 +48,7 @@ public class CollectActivity extends SubActivity {
         blockReceiver = new BroadcastReceiver() {
             @Override public void onReceive(Context c, Intent i) {
                 if (!MinimaAPI.checkMinimaID(CollectActivity.this, i)) return;
-                String data = i.getStringExtra(MinimaAPIMessages.MINIMA_API_NOTIFY_DATA);
+                String data = MinimaAPI.notifyData(i);
                 if (data == null) return;
                 try {
                     if ("NEWBLOCK".equals(new JSONObject(data).optString("event", "")) && !collecting) fetchBlock();
@@ -56,7 +56,7 @@ public class CollectActivity extends SubActivity {
             }
         };
         ContextCompat.registerReceiver(this, blockReceiver,
-                new IntentFilter(MinimaAPIMessages.MINIMA_API_NOTIFY), ContextCompat.RECEIVER_EXPORTED);
+                MinimaAPI.notifyFilter(), ContextCompat.RECEIVER_EXPORTED);
     }
 
     @Override
